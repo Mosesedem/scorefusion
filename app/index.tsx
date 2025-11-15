@@ -1,19 +1,20 @@
-import { useState, useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import * as SplashScreen from 'expo-splash-screen';
-import NetInfo from '@react-native-community/netinfo';
+import NetInfo from "@react-native-community/netinfo";
+import * as SplashScreen from "expo-splash-screen";
+import { useEffect, useState } from "react";
+import { StyleSheet } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
-import WebViewComponent from '@/components/WebViewComponent';
-import SocialFollowModal from '@/components/SocialFollowModal';
-import NoInternetScreen from '@/components/NoInternetScreen';
-import ErrorScreen from '@/components/ErrorScreen';
-import { useNotifications } from '@/hooks/useNotifications';
+import ErrorScreen from "@/components/ErrorScreen";
+import InteractiveSplashScreen from "@/components/InteractiveSplashScreen";
+import NoInternetScreen from "@/components/NoInternetScreen";
+import SocialFollowModal from "@/components/SocialFollowModal";
+import WebViewComponent from "@/components/WebViewComponent";
+import { useNotifications } from "@/hooks/useNotifications";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function HomeScreen() {
-  const [appReady, setAppReady] = useState(false);
+  const [splashVisible, setSplashVisible] = useState(true);
   const [showError, setShowError] = useState(false);
   const [showNoInternet, setShowNoInternet] = useState(false);
   const [isConnected, setIsConnected] = useState(true);
@@ -21,12 +22,7 @@ export default function HomeScreen() {
   const { expoPushToken } = useNotifications();
 
   useEffect(() => {
-    const timer = setTimeout(async () => {
-      setAppReady(true);
-      await SplashScreen.hideAsync();
-    }, 2500);
-
-    return () => clearTimeout(timer);
+    SplashScreen.hideAsync();
   }, []);
 
   useEffect(() => {
@@ -46,7 +42,7 @@ export default function HomeScreen() {
 
   useEffect(() => {
     if (expoPushToken) {
-      console.log('Push Token (save this on your server):', expoPushToken);
+      console.log("Push Token (save this on your server):", expoPushToken);
     }
   }, [expoPushToken]);
 
@@ -65,8 +61,8 @@ export default function HomeScreen() {
     setShowNoInternet(true);
   };
 
-  if (!appReady) {
-    return null;
+  if (splashVisible) {
+    return <InteractiveSplashScreen onReady={() => setSplashVisible(false)} />;
   }
 
   return (
@@ -76,7 +72,10 @@ export default function HomeScreen() {
       ) : showError ? (
         <ErrorScreen onRetry={handleRetry} />
       ) : (
-        <WebViewComponent onError={handleError} onNoInternet={handleNoInternet} />
+        <WebViewComponent
+          onError={handleError}
+          onNoInternet={handleNoInternet}
+        />
       )}
       <SocialFollowModal />
     </SafeAreaView>
@@ -86,6 +85,6 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
   },
 });
