@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "481424847886",
+    "project_id": "scorefusion-d26f2",
+    "storage_bucket": "scorefusion-d26f2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481424847886:android:1a929e0687dbb54bddf85f",
+        "android_client_info": {
+          "package_name": "com.scorefusion.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA3StIRwNNNjQv2F-CjKJx9XtGarOrDxvM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

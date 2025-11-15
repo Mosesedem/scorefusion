@@ -38,12 +38,20 @@
         "expo-notifications",
         {
           "icon": "./assets/images/icon.png",
-          "color": "#ffffff"
+          "color": "#ffffff",
+          "googleServicesFile": "./google-services.json"
         }
       ]
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "aeabdfeb-05fd-4a9a-900f-3c6e760a2fde"
+      }
+    },
+    "owner": "monoge"
   }
 }
