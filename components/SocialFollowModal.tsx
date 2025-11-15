@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as WebBrowser from "expo-web-browser";
-import { MessageCircle, Users, MailIcon } from "lucide-react-native";
+import { MailIcon, MessageCircle, Users } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import {
   Animated,
