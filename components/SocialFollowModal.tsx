@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as WebBrowser from "expo-web-browser";
-import { Facebook, Instagram, Music, Twitter } from "lucide-react-native";
+import { MessageCircle, Users, MailIcon } from "lucide-react-native";
 import { useEffect, useState } from "react";
 import {
   Animated,
@@ -17,10 +17,14 @@ const ONE_DAY = 24 * 60 * 60 * 1000;
 const THREE_DAYS = 3 * ONE_DAY;
 
 const SOCIAL_LINKS = {
-  instagram: "https://www.instagram.com/scorefusion",
-  twitter: "https://twitter.com/scorefusion",
-  facebook: "https://www.facebook.com/scorefusion",
-  tiktok: "https://www.tiktok.com/@scorefusion",
+  telegram: "https://t.me/Donaldauthorr",
+  channel: "https://t.me/+QysfcefOapnhAbKA",
+  email:
+    "mailto:Scorefusionn@gmail.com?subject=VIP%20Subscription%20Payment&body=Hi,%0D%0A%0D%0AI%20want%20to%20subscribe%20to%20the%20",
+  // facebook: "https://www.facebook.com/scorefusion",
+  // tiktok: "https://www.tiktok.com/@scorefusion",
+  whatsapp:
+    "https://api.whatsapp.com/send?phone=84589950720&text=Hello%2C%20I%20would%20like%20to%20get%20in%20touch%20with%20Score%20Fusion.",
 };
 
 export default function SocialFollowModal() {
@@ -125,34 +129,34 @@ export default function SocialFollowModal() {
           <View style={styles.socialButtons}>
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => handleSocialPress("instagram")}
+              onPress={() => handleSocialPress("whatsapp")}
             >
-              <Instagram size={32} color="#E4405F" strokeWidth={2} />
-              <Text style={styles.socialText}>Instagram</Text>
+              <MessageCircle size={32} color="#25D366" strokeWidth={2} />
+              <Text style={styles.socialText}>Whatsapp</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => handleSocialPress("twitter")}
+              onPress={() => handleSocialPress("telegram")}
             >
-              <Twitter size={32} color="#1DA1F2" strokeWidth={2} />
-              <Text style={styles.socialText}>Twitter/X</Text>
+              <MessageCircle size={32} color="#0088cc" strokeWidth={2} />
+              <Text style={styles.socialText}>Telegram</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => handleSocialPress("facebook")}
+              onPress={() => handleSocialPress("channel")}
             >
-              <Facebook size={32} color="#4267B2" strokeWidth={2} />
-              <Text style={styles.socialText}>Facebook</Text>
+              <Users size={32} color="#0088cc" strokeWidth={2} />
+              <Text style={styles.socialText}>Telegram Channel</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => handleSocialPress("tiktok")}
+              onPress={() => handleSocialPress("email")}
             >
-              <Music size={32} color="#000000" strokeWidth={2} />
-              <Text style={styles.socialText}>TikTok</Text>
+              <MailIcon size={32} color="#000000" strokeWidth={2} />
+              <Text style={styles.socialText}>Email</Text>
             </TouchableOpacity>
           </View>
 
