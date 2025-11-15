@@ -1,31 +1,26 @@
-import { useEffect, useState } from 'react';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as WebBrowser from "expo-web-browser";
+import { Facebook, Instagram, Music, Twitter } from "lucide-react-native";
+import { useEffect, useState } from "react";
 import {
-  Modal,
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
   Animated,
   Dimensions,
-} from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as WebBrowser from 'expo-web-browser';
-import {
-  Instagram,
-  Twitter,
-  Facebook,
-  Music,
-} from 'lucide-react-native';
+  Modal,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
-const STORAGE_KEY = '@social_popup_dismiss';
+const STORAGE_KEY = "@social_popup_dismiss";
 const ONE_DAY = 24 * 60 * 60 * 1000;
 const THREE_DAYS = 3 * ONE_DAY;
 
 const SOCIAL_LINKS = {
-  instagram: 'https://www.instagram.com/scorefusion',
-  twitter: 'https://twitter.com/scorefusion',
-  facebook: 'https://www.facebook.com/scorefusion',
-  tiktok: 'https://www.tiktok.com/@scorefusion',
+  instagram: "https://www.instagram.com/scorefusion",
+  twitter: "https://twitter.com/scorefusion",
+  facebook: "https://www.facebook.com/scorefusion",
+  tiktok: "https://www.tiktok.com/@scorefusion",
 };
 
 export default function SocialFollowModal() {
@@ -62,7 +57,7 @@ export default function SocialFollowModal() {
         setVisible(true);
       }
     } catch (error) {
-      console.error('Error checking modal state:', error);
+      console.error("Error checking modal state:", error);
       setVisible(true);
     }
   };
@@ -83,7 +78,7 @@ export default function SocialFollowModal() {
         setVisible(false);
       });
     } catch (error) {
-      console.error('Error saving dismiss state:', error);
+      console.error("Error saving dismiss state:", error);
     }
   };
 
@@ -91,7 +86,7 @@ export default function SocialFollowModal() {
     try {
       await WebBrowser.openBrowserAsync(SOCIAL_LINKS[platform]);
     } catch (error) {
-      console.error('Error opening social link:', error);
+      console.error("Error opening social link:", error);
     }
   };
 
@@ -104,7 +99,8 @@ export default function SocialFollowModal() {
       visible={visible}
       transparent={true}
       animationType="none"
-      onRequestClose={() => handleDismiss(ONE_DAY)}>
+      onRequestClose={() => handleDismiss(ONE_DAY)}
+    >
       <Animated.View style={[styles.overlay, { opacity: fadeAnim }]}>
         <Animated.View
           style={[
@@ -119,37 +115,42 @@ export default function SocialFollowModal() {
                 },
               ],
             },
-          ]}>
+          ]}
+        >
           <Text style={styles.title}>Connect With Us</Text>
           <Text style={styles.message}>
-            Follow us on social media for updates, tips, and exclusive content!
+            Follow and connect with us for updates, tips, and exclusive content!
           </Text>
 
           <View style={styles.socialButtons}>
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => handleSocialPress('instagram')}>
+              onPress={() => handleSocialPress("instagram")}
+            >
               <Instagram size={32} color="#E4405F" strokeWidth={2} />
               <Text style={styles.socialText}>Instagram</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => handleSocialPress('twitter')}>
+              onPress={() => handleSocialPress("twitter")}
+            >
               <Twitter size={32} color="#1DA1F2" strokeWidth={2} />
               <Text style={styles.socialText}>Twitter/X</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => handleSocialPress('facebook')}>
+              onPress={() => handleSocialPress("facebook")}
+            >
               <Facebook size={32} color="#4267B2" strokeWidth={2} />
               <Text style={styles.socialText}>Facebook</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.socialButton}
-              onPress={() => handleSocialPress('tiktok')}>
+              onPress={() => handleSocialPress("tiktok")}
+            >
               <Music size={32} color="#000000" strokeWidth={2} />
               <Text style={styles.socialText}>TikTok</Text>
             </TouchableOpacity>
@@ -158,13 +159,15 @@ export default function SocialFollowModal() {
           <View style={styles.dismissButtons}>
             <TouchableOpacity
               style={[styles.dismissButton, styles.remindLater]}
-              onPress={() => handleDismiss(ONE_DAY)}>
+              onPress={() => handleDismiss(ONE_DAY)}
+            >
               <Text style={styles.dismissButtonText}>Remind me later</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               style={[styles.dismissButton, styles.dontShow]}
-              onPress={() => handleDismiss(THREE_DAYS)}>
+              onPress={() => handleDismiss(THREE_DAYS)}
+            >
               <Text style={styles.dismissButtonText}>Don't show for now</Text>
             </TouchableOpacity>
           </View>
@@ -174,22 +177,22 @@ export default function SocialFollowModal() {
   );
 }
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get("window");
 
 const styles = StyleSheet.create({
   overlay: {
     flex: 1,
-    backgroundColor: 'rgba(0, 0, 0, 0.6)',
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: "rgba(0, 0, 0, 0.6)",
+    justifyContent: "center",
+    alignItems: "center",
   },
   modalContainer: {
     width: width * 0.85,
     maxWidth: 400,
-    backgroundColor: '#ffffff',
+    backgroundColor: "#ffffff",
     borderRadius: 20,
     padding: 24,
-    shadowColor: '#000',
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 4,
@@ -200,35 +203,35 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 24,
-    fontWeight: '700',
-    color: '#1a1a1a',
-    textAlign: 'center',
+    fontWeight: "700",
+    color: "#1a1a1a",
+    textAlign: "center",
     marginBottom: 12,
   },
   message: {
     fontSize: 16,
-    color: '#666666',
-    textAlign: 'center',
+    color: "#666666",
+    textAlign: "center",
     lineHeight: 24,
     marginBottom: 24,
   },
   socialButtons: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "space-around",
     marginBottom: 24,
   },
   socialButton: {
-    alignItems: 'center',
+    alignItems: "center",
     padding: 12,
-    width: '45%',
+    width: "45%",
     marginBottom: 12,
   },
   socialText: {
     marginTop: 8,
     fontSize: 14,
-    color: '#333333',
-    fontWeight: '500',
+    color: "#333333",
+    fontWeight: "500",
   },
   dismissButtons: {
     gap: 12,
@@ -237,17 +240,17 @@ const styles = StyleSheet.create({
     paddingVertical: 14,
     paddingHorizontal: 20,
     borderRadius: 12,
-    alignItems: 'center',
+    alignItems: "center",
   },
   remindLater: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: "#f0f0f0",
   },
   dontShow: {
-    backgroundColor: '#e8e8e8',
+    backgroundColor: "#e8e8e8",
   },
   dismissButtonText: {
     fontSize: 15,
-    fontWeight: '600',
-    color: '#333333',
+    fontWeight: "600",
+    color: "#333333",
   },
 });

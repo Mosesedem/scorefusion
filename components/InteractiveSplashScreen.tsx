@@ -28,7 +28,9 @@ export default function InteractiveSplashScreen({
     <View style={styles.container}>
       <Animated.View style={[styles.content, { opacity: fadeAnim }]}>
         <Text style={styles.title}>ScoreFusion</Text>
-        <Text style={styles.subtitle}>Your ultimate scoring app</Text>
+        <Text style={styles.subtitle}>
+          Your Ultimate football prediction App
+        </Text>
         <TouchableOpacity style={styles.button} onPress={onReady}>
           <Text style={styles.buttonText}>Get Started</Text>
         </TouchableOpacity>
