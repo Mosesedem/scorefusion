@@ -11,7 +11,7 @@ import {
 } from "react-native";
 import { WebView } from "react-native-webview";
 
-const WEBSITE_URL = "https://www.getscorefusion.com/";
+const WEBSITE_URL = "https://app.getscorefusion.com/";
 
 interface WebViewComponentProps {
   onError?: () => void;
