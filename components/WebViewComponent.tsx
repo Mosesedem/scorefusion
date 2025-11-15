@@ -1,17 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import NetInfo from "@react-native-community/netinfo";
+import * as WebBrowser from "expo-web-browser";
+import { useEffect, useRef, useState } from "react";
 import {
-  View,
-  StyleSheet,
   ActivityIndicator,
+  Platform,
   RefreshControl,
   ScrollView,
-  Platform,
-} from 'react-native';
-import { WebView } from 'react-native-webview';
-import * as WebBrowser from 'expo-web-browser';
-import NetInfo from '@react-native-community/netinfo';
+  StyleSheet,
+  View,
+} from "react-native";
+import { WebView } from "react-native-webview";
 
-const WEBSITE_URL = 'https://www.getscorefusion.com/';
+const WEBSITE_URL = "https://app.getscorefusion.com/";
 
 interface WebViewComponentProps {
   onError?: () => void;
@@ -50,7 +50,7 @@ export default function WebViewComponent({
 
   const handleNavigationStateChange = (navState: any) => {
     const { url } = navState;
-    const mainDomain = 'getscorefusion.com';
+    const mainDomain = "getscorefusion.com";
 
     if (!url.includes(mainDomain)) {
       if (webViewRef.current) {
@@ -63,7 +63,7 @@ export default function WebViewComponent({
 
   const handleShouldStartLoadWithRequest = (request: any) => {
     const { url } = request;
-    const mainDomain = 'getscorefusion.com';
+    const mainDomain = "getscorefusion.com";
 
     if (!url.includes(mainDomain)) {
       WebBrowser.openBrowserAsync(url);
@@ -86,12 +86,13 @@ export default function WebViewComponent({
 
   return (
     <View style={styles.container}>
-      {Platform.OS === 'ios' ? (
+      {Platform.OS === "ios" ? (
         <ScrollView
           contentContainerStyle={{ flex: 1 }}
           refreshControl={
             <RefreshControl refreshing={refreshing} onRefresh={handleRefresh} />
-          }>
+          }
+        >
           <WebView
             ref={webViewRef}
             source={{ uri: WEBSITE_URL }}
@@ -146,13 +147,13 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   loadingContainer: {
-    position: 'absolute',
+    position: "absolute",
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "rgba(255, 255, 255, 0.8)",
   },
 });
