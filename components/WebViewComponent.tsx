@@ -132,7 +132,7 @@ export default function WebViewComponent({
 
       {isLoading && (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#007AFF" />
+          <ActivityIndicator size="large" color="#FFA500" />
         </View>
       )}
     </View>
