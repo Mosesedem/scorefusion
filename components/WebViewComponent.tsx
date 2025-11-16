@@ -49,24 +49,53 @@ export default function WebViewComponent({
   };
 
   const handleNavigationStateChange = (navState: any) => {
-    const { url } = navState;
+    const url = navState?.url;
     const mainDomain = "getscorefusion.com";
+
+    // Ignore initial/utility schemes (about:blank, data:, file:, etc.)
+    if (
+      !url ||
+      url.startsWith("about:blank") ||
+      url.startsWith("file:") ||
+      url.startsWith("data:") ||
+      url.startsWith("blob:") ||
+      url.startsWith("javascript:")
+    ) {
+      return;
+    }
 
     if (!url.includes(mainDomain)) {
       if (webViewRef.current) {
         webViewRef.current.stopLoading();
       }
-      WebBrowser.openBrowserAsync(url);
+      if (url.startsWith("http")) {
+        WebBrowser.openBrowserAsync(url);
+      }
       return false;
     }
   };
 
   const handleShouldStartLoadWithRequest = (request: any) => {
-    const { url } = request;
+    const url = request?.url ?? request;
     const mainDomain = "getscorefusion.com";
 
+    // Allow initial/navigation stub URLs and non-http schemes to proceed
+    if (
+      !url ||
+      url.startsWith("about:blank") ||
+      url.startsWith("file:") ||
+      url.startsWith("data:") ||
+      url.startsWith("blob:") ||
+      url.startsWith("javascript:")
+    ) {
+      return true;
+    }
+
+    // If the url is external to the main domain, open externally for http(s)
     if (!url.includes(mainDomain)) {
-      WebBrowser.openBrowserAsync(url);
+      if (url.startsWith("http")) {
+        WebBrowser.openBrowserAsync(url);
+      }
       return false;
     }
 
