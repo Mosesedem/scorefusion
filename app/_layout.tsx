@@ -399,7 +399,7 @@ const App = () => {
       const result = await sendPushNotification(
         expoPushToken,
         "Test Notification",
-        "This is a test notification from HospitalCard",
+        "This is a test notification from Score Fusion",
         { test: true }
       );
 
@@ -512,7 +512,7 @@ const App = () => {
   if (webViewError) {
     return (
       <ErrorScreen
-        message="Unable to load HospitalCard dashboard. Please check your connection and try again."
+        message="Unable to load Score Fusion dashboard. Please check your connection and try again."
         onRetry={handleRetry}
       />
     );
@@ -556,7 +556,7 @@ const App = () => {
         cacheEnabled={true}
         incognito={false}
         allowsBackForwardNavigationGestures={true}
-        userAgent="Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36 HospitalCardApp/1.0"
+        userAgent="Mozilla/5.0 (Linux; Android 10; Mobile) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.120 Mobile Safari/537.36 Score FusionApp/1.0"
         injectedJavaScript={`
           // Inject push token into web page for backend integration
           window.expoPushToken = '${expoPushToken || ""}';
