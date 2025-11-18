@@ -16,6 +16,7 @@
 //   );
 // }
 
+import SocialFollowModal from "@/components/SocialFollowModal";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import NetInfo from "@react-native-community/netinfo";
 import Constants from "expo-constants";
@@ -564,6 +565,7 @@ const App = () => {
           true; // note: this is required, or you'll sometimes get silent failures
         `}
       />
+      <SocialFollowModal />
     </SafeAreaView>
   );
 };
