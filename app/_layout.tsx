@@ -46,7 +46,7 @@ SplashScreen.hideAsync().catch(() => {
 
 // Set the animation options. This is optional.
 SplashScreen.setOptions({
-  duration: 1000,
+  duration: 3000,
   fade: true,
 });
 
@@ -269,7 +269,7 @@ const App = () => {
         }
 
         // 3. Minimum loading time for smooth UX (optional)
-        await new Promise((resolve) => setTimeout(resolve, 2000));
+        await new Promise((resolve) => setTimeout(resolve, 1000));
       } catch (e) {
         console.warn("App initialization error:", e);
       } finally {
@@ -483,7 +483,7 @@ const App = () => {
   const Preloader = () => (
     setTimeout(() => {
       setWebViewLoading(false);
-    }, 3000), // Auto-hide after 5 seconds
+    }, 1000), // Auto-hide after 2 milliseconds
     (
       <View style={styles.preloaderContainer}>
         <ActivityIndicator size="large" color="#ff9100ff" />
