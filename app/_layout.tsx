@@ -420,7 +420,7 @@ const App = () => {
   };
 
   // URL to load in WebView
-  const webUrl = "https://app.getscorefusion.com/dashboard";
+  const webUrl = "https://app.getscorefusion.com";
 
   // Enhanced Splash Screen Component
   const CustomSplashScreen = () => (
